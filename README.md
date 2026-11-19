@@ -6,7 +6,7 @@ A small, open test of one reporting error: when an AI model is asked to summaris
 
 ## Why this matters
 
-People increasingly ask AI models to read evaluation logs and say whether a release meets policy. If a test that never ran reads as a test that passed, a human reviewer can approve an unsafe change without knowing that a check was skipped. The opposite error also matters: a model that calls every run incomplete is useless as a reviewer. MINZ checks both directions.
+AI models are starting to be used to read evaluation logs and summarise behaviour (see Petri in RELATED.md), and they can be asked whether a release meets policy. If a test that never ran reads as a test that passed, a human reviewer can approve an unsafe change without knowing that a check was skipped. The opposite error also matters: a model that calls every run incomplete is useless as a reviewer. MINZ checks both directions.
 
 ## What a case looks like
 
@@ -49,7 +49,7 @@ Do not show `keys/` to a model under test.
 
 | Set | IDs | Cases | What it covers |
 |---|---|---|---|
-| base | MINZ-02, -04, -11, -23, -35, -38 | 6 | Visible gaps (TIMEOUT, null, ERROR, blank) and two complete controls. These are the six worked examples from the 40-case plan in PREREG.md; the other 34 planned cases are not written yet. |
+| base | MINZ-02, -04, -11, -23, -35, -38 | 6 | Visible gaps (TIMEOUT, null, ERROR, blank) and two complete controls. Only these six worked examples of PREREG.md's 40-case base design exist; the remaining 34 base cases are not written yet. |
 | hard | H1 to H6 | 6 | Quieter gaps: absent log lines, an absent table row, non-results marked "done", a missing shard in a footnote; two controls. |
 | top3 | T01 to T12 | 12 | Nothing is absent. A wrong verdict label above a complete log; a reviewer note whose warning must survive a 25-word status line; a clean report about the wrong build. Five controls. |
 | absence | A01 to A10 | 10 | The gap is detectable only by counting or comparing: absent rows under a PASS label, a note whose numbers do not add up to the plan, a numbered list that skips numbers, an absent worker row, fewer JSON entries than planned, a manifest with IDs that never appear in the results. Four controls. |

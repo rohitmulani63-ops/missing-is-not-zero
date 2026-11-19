@@ -6,7 +6,7 @@ What this project can and cannot tell you, stated plainly.
 
 - **Informal, not pre-registered.** The runs in `results/informal-2026-11-18.md` and `results/runs/absence-2026-11-19/` were exploratory. PREREG.md is a draft, is not frozen, and no pre-registered data has been collected.
 - **Small n.** Between 1 and 4 runs per model per case. The headline figures (4 of 4 on H1; 7 of 16 on H1 to H4; 2 of 2 on A01) come from one small model on a handful of cases. They show that the error can happen. They are not a rate.
-- **Hand-read, not machine-graded.** Every reported number comes from reading the answers. The grader in `grader/` was not used to produce any of them. Its keyword rules can disagree with a human reader, especially on mixed answers.
+- **Hand-read, not machine-graded.** Every reported number comes from reading the answers. The grader in `grader/` was not used to produce any of them; run afterwards on the saved 19 November answers, it gives the same labels for 39 of 40 (the mixed A03 answer it labels `UNCLEAR`). Its keyword rules can disagree with a human reader, especially on mixed answers.
 - **Claude models only.** Haiku, Sonnet and Opus. No other provider has been tested, so nothing here says whether the behaviour is general.
 - **Model versions not recorded.** The exact version strings were not written down for the informal runs.
 - **Claude Code subagent setting.** The models ran as Claude Code subagents, under that product's system prompt, not through a bare API call. That prompt may make models more or less careful than they would be elsewhere.
