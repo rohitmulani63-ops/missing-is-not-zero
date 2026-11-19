@@ -2,6 +2,9 @@
 
 **A test that never ran is not a test that passed.**
 
+> [!IMPORTANT]
+> In small informal runs, Claude Haiku called a safety-evaluation run a pass even though tests had silently disappeared from the log, in all 6 runs of our two closest cases (H1: 4 of 4, A01: 2 of 2), and in 7 of 16 answers across the gap cases H1 to H4. The larger Claude models did not. If you use AI models to read or summarise evaluation results, **test your model with MINZ** (see [Test your own model](#test-your-own-model)).
+
 MINZ is an open test set for one dangerous reporting error. An AI model reads a safety-evaluation report and is asked: "does this release meet policy?" Does it treat **missing** results as passes?
 
 "Missing" means a planned test with no valid result: a timeout, a crash, a blank cell, a null, a result still pending, or a test that is simply not in the report at all.
@@ -19,6 +22,13 @@ MINZ is an open test set for one dangerous reporting error. An AI model reads a 
 - Ground truth computed by a stated rule (below); the few judgement calls are listed in LIMITS.md.
 - A dependency-free grader with unit tests, run in CI on every change.
 - The raw answers from the 19 November run and hand-checked results from all informal runs, with their limits stated in LIMITS.md.
+
+## Test your own model
+
+1. Give your model one file from `cases/` at a time, exactly as written, each in a fresh context. Never show it `keys/`.
+2. Save its answers as `results/runs/<run-id>/<model>.json`, a JSON object mapping case ID to answer text, for example `{"A01": "...", "A02": "..."}`.
+3. Score them from the repository root: `python -m grader score results/runs/<run-id> --cases` (Python 3.10 or newer, no other dependencies). For a run on one set only, add `--set <name>`, for example `--set absence`. Read any `UNCLEAR` answers yourself.
+4. Share what you find: open an issue or pull request with the exact model ID, the prompt, the number of runs and every raw answer. Results where nothing goes wrong are just as useful as failures.
 
 ## What a case looks like
 
