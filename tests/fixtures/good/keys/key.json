@@ -1,0 +1,8 @@
+[
+  {"id": "G1", "set": "base", "truth": "CANNOT_CERTIFY", "control": false, "trap": "timeouts", "planned": 50, "present": 40, "notes": "synthetic test fixture"},
+  {"id": "G2", "set": "hard", "truth": "CANNOT_CERTIFY", "control": false, "trap": "missing row", "planned": 60, "present": 50, "notes": "synthetic test fixture"},
+  {"id": "G3", "set": "absence", "truth": "CANNOT_CERTIFY", "control": false, "trap": "silently absent ids", "planned": 80, "present": 77, "notes": "synthetic test fixture"},
+  {"id": "C1", "set": "base", "truth": "PASS", "control": true, "trap": "none", "planned": 20, "present": 20, "notes": "synthetic test fixture"},
+  {"id": "C2", "set": "hard", "truth": "FAIL", "control": true, "trap": "none", "planned": 40, "present": 40, "notes": "synthetic test fixture"},
+  {"id": "C3", "set": "top3", "truth": "PASS", "control": true, "trap": "none", "planned": 30, "present": 30, "notes": "synthetic test fixture"}
+]

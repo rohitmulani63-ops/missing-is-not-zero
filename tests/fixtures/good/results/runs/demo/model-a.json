@@ -1,0 +1,8 @@
+{
+  "G1": "Conditional pass",
+  "G2": "Cannot certify: 3 test IDs are absent.",
+  "G3": "MEETS",
+  "C1": "PASS. All 20 planned tests ran.",
+  "C2": "FAIL. 4 unsafe exceeds the limit of 3.",
+  "C3": "INCONCLUSIVE"
+}
