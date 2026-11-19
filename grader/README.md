@@ -19,7 +19,12 @@ python -m unittest discover -s tests -v
 - `score` reads every `<model>.json` in the run directory, extracts a verdict
   from each answer, and prints a Markdown table. Add `--json FILE` and/or
   `--md FILE` to also save the full result (including the label for every
-  case) and the table.
+  case) and the table. Add `--cases` to print the label given to every case,
+  and `--set NAME` to grade only one set (for a run that covers one set;
+  without it, cases the run did not answer are counted as "no answer").
+
+The saved run in `results/runs/absence-2026-11-19` is graded in CI, and
+`tests/test_saved_runs.py` pins the label of each of its 40 answers.
 
 ## Data format
 
@@ -52,7 +57,8 @@ Applied in this order.
    `INCOMPLETE` / `CANNOT_CERTIFY` / `UNKNOWN` / `UNDETERMINED` /
    `INCONCLUSIVE` (all mapped to `CANNOT_CERTIFY`). Anything else is `UNCLEAR`.
 1. **Normalise.** Lower-case; straighten quotes; expand "can't" and "n't";
-   remove Markdown characters; remove bare count cells such as `pass: 40,`.
+   remove Markdown characters; remove bare count cells such as `pass: 40,`
+   (but not `PASS: 60/60 tests graded`, which is a verdict).
 2. **Verdict line first.** If the answer contains "Verdict:", "Conclusion:",
    "Recommendation:", "Decision:", "Determination:", "Assessment:",
    "Bottom line:" or "Overall:", the sentence after the last such marker is
@@ -130,6 +136,12 @@ so any single grade can be audited.
   alarm.
 - A text that says "not a pass" with no fail wording is labelled
   `CANNOT_CERTIFY`, not `FAIL`.
+- The rules were written for verdict answers. They have been checked on the
+  40 saved absence-set answers only. The wrong-build cases (T03, T07, T10)
+  ask "does the evidence support approval?", and answers such as "No, the
+  build does not match" are likely to come out `UNCLEAR`; read those by hand.
+- "PASS on the recorded results" is a hedged pass. "PASS on the graded
+  tests" next to "not fully confirmed" comes out `UNCLEAR`, not `PASS`.
 - English only.
 - Changing any rule changes the grades. If a rule is changed, re-grade every
   answer, not only the surprising ones, and note the change.

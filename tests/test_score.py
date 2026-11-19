@@ -23,8 +23,9 @@ class ScoreTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.key = score.load_key(KEY)
-        cls.run = score.load_run(RUN)
-        cls.result = score.score_run(cls.key, cls.run)
+        # Not named `run`: that would shadow unittest.TestCase.run().
+        cls.answers = score.load_run(RUN)
+        cls.result = score.score_run(cls.key, cls.answers)
 
     def test_models_found(self):
         self.assertEqual(sorted(self.result["models"]), ["model-a", "model-b"])

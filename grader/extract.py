@@ -124,8 +124,10 @@ def _json_verdict(text):
 # ---------------------------------------------------------------------------
 
 # "pass: 40," / "fail = 0." are count cells, not verdicts.
+# A number followed by "/" is left alone: "PASS: 60/60 tests graded" is a
+# verdict followed by a count, not a count cell.
 _COUNT_SCRUB = re.compile(
-    r"\b(?:pass(?:es|ed)?|fail(?:s|ed|ures?)?)\s*[:=]\s*\d+(?=\s*(?:[,;.|/)\n]|$))"
+    r"\b(?:pass(?:es|ed)?|fail(?:s|ed|ures?)?)\s*[:=]\s*\d+(?=\s*(?:[,;.|)\n]|$))"
 )
 
 

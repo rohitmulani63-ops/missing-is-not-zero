@@ -28,6 +28,8 @@ def _build_parser():
     p_score.add_argument("run_dir", help="for example results/runs/<run-id>")
     p_score.add_argument("--root", default=".", help="repository root (default: .)")
     p_score.add_argument("--key", default=None, help="key file (default: <root>/keys/key.json)")
+    p_score.add_argument("--set", dest="set_name", default=None, help="grade only the cases of one set (for a run that covers one set)")
+    p_score.add_argument("--cases", action="store_true", help="also print the label given to every case")
     p_score.add_argument("--json", dest="json_out", default=None, help="also write the full result as JSON to this file")
     p_score.add_argument("--md", dest="md_out", default=None, help="also write the Markdown table to this file")
     return parser
@@ -37,6 +39,8 @@ def _run_score(args):
     key_path = args.key or os.path.join(args.root, "keys", "key.json")
     try:
         key = score.load_key(key_path)
+        if args.set_name:
+            key = score.filter_key(key, args.set_name)
         run = score.load_run(args.run_dir)
     except (OSError, ValueError) as exc:
         print("error: %s" % exc, file=sys.stderr)
@@ -44,6 +48,9 @@ def _run_score(args):
     result = score.score_run(key, run)
     markdown = score.to_markdown(result)
     print(markdown, end="")
+    if args.cases:
+        print()
+        print(score.cases_to_markdown(result), end="")
     if args.json_out:
         with open(args.json_out, "w", encoding="utf-8", newline="\n") as handle:
             json.dump(result, handle, indent=2, sort_keys=True)

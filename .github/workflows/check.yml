@@ -19,3 +19,7 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Validate cases and key
         run: python -m grader check
+      - name: Score the saved absence-set run
+        run: python -m grader score results/runs/absence-2026-11-19 --set absence --cases
+      - name: Score the saved absence-set run against the full key
+        run: python -m grader score results/runs/absence-2026-11-19

@@ -175,6 +175,38 @@ def _frac(count, total):
     return "%d/%d (%.1f%%)" % (count, total, 100.0 * count / total)
 
 
+def filter_key(key, set_name):
+    """Return only the key entries of one set. Raises ValueError if none."""
+    kept = [entry for entry in key if entry["set"] == set_name]
+    if not kept:
+        raise ValueError("no key entries in set: %s" % set_name)
+    return kept
+
+
+def cases_to_markdown(result):
+    """Render the label given to every case, one column per model."""
+    models = sorted(result["models"])
+    lines = [
+        "| Case | Truth | " + " | ".join(models) + " |",
+        "|---|---|" + "---|" * len(models),
+    ]
+    if not models:
+        return "\n".join(lines) + "\n"
+    first = result["models"][models[0]]["cases"]
+    for case_id in first:
+        cells = []
+        for model in models:
+            case = result["models"][model]["cases"][case_id]
+            if case["outcome"] == "correct":
+                cells.append(case["label"])
+            else:
+                cells.append("%s (%s)" % (case["label"], case["outcome"]))
+        lines.append(
+            "| %s | %s | %s |" % (case_id, first[case_id]["truth"], " | ".join(cells))
+        )
+    return "\n".join(lines) + "\n"
+
+
 def to_markdown(result):
     """Render the result of score_run() as a Markdown table."""
     lines = [
