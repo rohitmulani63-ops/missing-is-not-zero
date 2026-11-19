@@ -2,7 +2,7 @@
 
 > **DRAFT — not frozen; no pre-registered data collected yet.**
 >
-> This is design draft v0.1, written on 18 November 2026. It has not been frozen and may still change. The informal runs in `results/informal-2026-11-18.md` were done outside this design and are not part of it. Only 6 of the 40 planned cases exist so far (see Appendix A). Once the design is approved it will be frozen, the commit hash recorded here before any pilot, and any later change listed in Section 10 with a date and a reason.
+> This is design draft v0.1, written on 18 November 2026. It has not been frozen and may still change. The informal runs in `results/` (18 and 19 November 2026) were done outside this design and are not part of it. Only 6 of the 40 planned cases exist so far (see Appendix A). Once the design is approved it will be frozen, the commit hash recorded here before any pilot, and any later change listed in Section 10 with a date and a reason.
 >
 > Terms: this draft uses UNDETERMINED for the verdict that `keys/key.json` calls CANNOT_CERTIFY, and INCOMPLETE for the matching answer from a model. They mean the same thing.
 

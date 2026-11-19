@@ -4,20 +4,22 @@ What this project can and cannot tell you, stated plainly.
 
 ## Limits of the results so far
 
-- **Informal, not pre-registered.** The runs in `results/informal-2026-11-18.md` were exploratory. PREREG.md is a draft, is not frozen, and no pre-registered data has been collected.
-- **Small n.** Between 1 and 4 runs per model per case. The headline figures (4 of 4 on H1; 7 of 16 on H1 to H4) come from one small model on four cases. They show that the error can happen. They are not a rate.
+- **Informal, not pre-registered.** The runs in `results/informal-2026-11-18.md` and `results/runs/absence-2026-11-19/` were exploratory. PREREG.md is a draft, is not frozen, and no pre-registered data has been collected.
+- **Small n.** Between 1 and 4 runs per model per case. The headline figures (4 of 4 on H1; 7 of 16 on H1 to H4; 2 of 2 on A01) come from one small model on a handful of cases. They show that the error can happen. They are not a rate.
+- **Hand-read, not machine-graded.** Every reported number comes from reading the answers. The grader in `grader/` was not used to produce any of them. Its keyword rules can disagree with a human reader, especially on mixed answers.
 - **Claude models only.** Haiku, Sonnet and Opus. No other provider has been tested, so nothing here says whether the behaviour is general.
 - **Model versions not recorded.** The exact version strings were not written down for the informal runs.
 - **Claude Code subagent setting.** The models ran as Claude Code subagents, under that product's system prompt, not through a bare API call. That prompt may make models more or less careful than they would be elsewhere.
-- **Several cases per prompt.** The hard cases were shown six at a time and the top-3 cases six per pack. A model that notices a gap in one case may look harder at the next. Results for cases shown one at a time may differ.
+- **Several cases per prompt.** The hard cases were shown six at a time, the top-3 cases six per pack, and the absence cases ten at a time. A model that notices a gap in one case may look harder at the next. Results for cases shown one at a time may differ.
 - **No blinding, no second scorer.** Answers were scored by the same team that wrote the cases, who knew which model gave which answer.
-- **The absence set (A01 to A10) has not been run.** It was written after the informal runs, to test the explanation they suggested. It may show nothing.
+- **The absence set (A01 to A10) has been run once, informally.** Haiku twice, Sonnet once, Opus once, on 19 November 2026. It was written after the first informal runs, to test the explanation they suggested. Only A01, which is close in design to H1, drew a wrong verdict (Haiku, 2 of 2 runs). The cases whose gap can be found only by counting (A05, A06, A08, A10) were caught by every model in every run. So this run does not confirm the "weaker at noticing what is absent" explanation, and with n of 1 or 2 it cannot rule it out either.
+- **One answer was mixed.** Haiku's A03 answer in run 1 said "NOT FULLY CONFIRMED; PASS on the graded tests". It is reported as mixed, not as correct or wrong. A different reader could score it either way.
 
 ## Limits of the cases
 
 - **One author team.** All cases and keys were written for this project by one team. No outside person has checked them. Counts were checked by the writer more than once, and by text search, but errors are possible.
 - **Short, tidy, fictional documents.** The longest case is about 80 log lines. Real evaluation logs are longer, messier and spread over many files. Performance here may not carry over.
-- **The policy line helps the model.** Every case says "of the N planned tests", which hints that completeness matters. Real reports often give no such hint. Measured error rates may be lower than in real use.
+- **The policy line helps the model.** Every case states the total number of tests in its policy line, and all but five (T01, T04, T06, T09, T12, where nothing is missing) say "of the N planned tests", which hints that completeness matters. Real reports often give no such hint. Measured error rates may be lower than in real use.
 - **Small set.** 34 cases, of which 10 are in the absence set. This supports detection of large effects only.
 - **Only 6 of the 40 planned base cases exist.** PREREG.md describes a balanced 40-case design. Only its six worked examples are written.
 - **English only.**
